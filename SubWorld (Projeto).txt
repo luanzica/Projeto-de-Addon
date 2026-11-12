@@ -1,0 +1,206 @@
+===============================
+• Projeto Principal: SubWorld - Ocean Core World (Para Minecraft Bedrock Edition 1.26.50)
+
+[Fase 1 de 5]: Proposta & Pesquisa
+
+- Projeto Teste: Ocean World Biome Override System — Minecraft Bedrock 26.50
+
+Desenvolva um protótipo de Behavior Pack para Minecraft Bedrock Edition 26.50 cujo objetivo é fazer com que o Overworld utilize exclusivamente biomas oceânicos (Biomas oceânico vanilla pode deixar intacto).
+
+- Objetivo principal
+
+Substituir os biomas terrestres originais por diferentes biomas oceânicos personalizados, preservando os biomas oceânicos nativos que forem compatíveis.
+
+Não quero um mapa pronto ou uma alteração por comandos repetitivos. Quero investigar e utilizar os recursos nativos de geração de biomas do Bedrock.
+
+| Etapa 1 — Pesquisa técnica
+
+1. Consulte a documentação oficial atual do Minecraft Creator e os arquivos de referência do repositório Mojang/bedrock-samples.
+2. Identifique os identificadores reais de todos os biomas do Overworld na versão-alvo.
+3. Separe os biomas oceânicos dos terrestres e subterrâneos.
+4. Investigue o funcionamento de "minecraft:replace_biomes", suas limitações e a configuração correta para a versão 26.50.
+5. Investigue separadamente o campo NBT "BiomeOverride" de "level.dat". Não o confunda com "minecraft:replace_biomes".
+
+| Etapa 2 — Desenvolvimento do protótipo
+
+Crie um Behavior Pack mínimo com diferentes biomas personalizados, como:
+
+- Tropical Ocean 
+- Deep Abyss 
+- Frozen Ocean 
+- Kelp Forest
+- Volcanic Ocean
+- Shallow Ocean
+- Dead Ocean
+
+Utilize "minecraft:replace_biomes" para substituir os biomas terrestres identificados na etapa anterior.
+
+Utilize "amount: 1.0" como ponto inicial de teste e ajuste "noise_frequency_scale" para obter regiões oceânicas extensas.
+
+Não deixe biomas terrestres sem tratamento. Verifique também os biomas subterrâneos.
+
+| Etapa 3 — Restrições
+
+- Não adicionar mobs ou sistemas de combate.
+- Não utilizar scripts em loop para substituir blocos.
+- Não utilizar comandos repetitivos para modificar o terreno.
+- Não adicionar funcionalidades desnecessárias.
+- Priorizar o menor tamanho possível do pacote se possível.
+- Não presumir que a substituição de biomas elimina montanhas e continentes, deve se encontrar uma maneira de tornar o mundo praticamente oceânico.
+
+| Etapa 4 — Validação
+
+1. Validar todos os arquivos JSON.
+2. Conferir identificadores, componentes e format_version.
+3. Conferir se a substituição cobre todos os biomas terrestres.
+4. Gerar mundos novos com diferentes seeds.
+5. Verificar os biomas gerados e as áreas de terra exposta.
+6. Examinar os Content Logs.
+7. Entregar um relatório com os resultados, limitações e correções necessárias.
+
+Observação: Maioria dos testes real serão feito pelo usuário, dado que o ambiente do agente não consegue rodar o jogo em si
+
+| Etapa 5 — Investigação complementar
+
+Depois de validar o protótipo, investigar se existe algum método suportado pelo Bedrock 26.50 para modificar a geração do terreno e fazer com que as regiões terrestres se tornem completamente submersas (excessão a ilhas, explicação nas próximas fases).
+
+Não implementar soluções especulativas. Apresente primeiro uma prova de conceito técnica.
+
+Entregue o Behavior Pack instalável (.mcpack), os arquivos-fonte e um relatório explicando exatamente o que foi conseguido e o que ainda não é possível.
+
+• [Fase 2 de 5]: Definição de Bioma
+
+- Se o protótipo "Ocean World Biome Override System" estiver funcional, será feito reajustes e modificação.
+
+O biomas personalizados:
+
+- Tropical Ocean 
+- Deep Abyss 
+- Frozen Ocean 
+- Kelp Forest
+- Volcanic Ocean
+- Shallow Ocean
+- Dead Ocean
+
+Terá as seguintes modificações como versão final:
+
+[Tropical Ocean]:
+
+- Blocos: Água, Cascalho, Areia, Algas, Erva Marinha, Blocos de Corais, Coral, Gorgônias, Pepino do Mar
+
+- Definição: O oceano é raso e próximo da superfície do mar (15 a 20 blocos de altura entre a superfície e o chão no mar), há bastante peixes e quantidade de corais não tão abundante, a areia domina bastante mas há pequenos cantos onde se tem cascalho e argila
+
+- Cores: Água (#55C8B8), Grama (#CCFF3D), Folhagem (#88CF00), Neblina (#00AB94)
+
+[Deep Abyss]:
+
+- Blocos: Água, Areia, Cascalho, Erva Marinha, Bloco de Magma (poucos blocos de magma diversificado, a quantidade vária de 1 a 5, por chunk carregado)
+
+Definição: Oceano com profundidade alta (45 a 55 blocos de altura entre a superfície e o chão no mar) , poucos peixes são presentes nesse bioma, lulas brilhantes podem ser mais frequentes nesse bioma na profundidade mais baixo, Afogados não aparecem nesse bioma, plantas aquáticas não são muitos devido a falta de iluminação, blocos de magma podem aparecer nesse bioma, mas são bastante raros
+
+- Cores: Água (#092D45), Grama (#06C20C), Folhagem (#47A649), Neblina (#001F30)
+
+[Frozen Ocean]:
+
+- Blocos: Água, Gelo, Gelo Compactado, Gelo Azul, Areia, Argila
+
+- Definição: Um oceano não muito profundo (20 a 28 blocos de altura entre a superfície e o chão no mar) mas que tem formações de gelos que foram batizados de icebergs, as formações de gelos na superfície da água, não são muito diversificado, é mais gelo plano e boa parte quebrados que, formações de icebergs, quase nenhum peixe, poucos peixes ficam nesse bioma, sem nenhuma planta marinha nesse bioma devido a temperatura baixa
+
+- Cores: Água (#174B78), Grama (#5AA686), Folhagem (#2B8C60), Neblina (#002A52)
+
+[Kelp Ocean]:
+
+- Blocos: Água, Areia, Algas, Pepino do Mar, Erva Marinha
+
+- Definição: Um bioma com algas em abundância, sua profundidade é similar a "tropical ocean" (12 a 20 blocos de altura entre a superfície e o chão no mar), é quase como uma floresta, há bastante algas e peixes diversificado, não é profundo mas é equilíbriado na profundidade, que as algas conseguem até chegar bem próximo da superfície do mar, não há afogados aqui devido a alta intensidade de algas, pepinos do mar na maioria ficam próximo das algas nesse bioma
+
+- Cores: Água (#287966), Grama (#00BD02), Folhagem (#009602), Neblina (#13594A)
+
+[Volcanic Ocean]:
+
+- Blocos: Água, Areia, Bloco de Magma, Pedra
+
+- Definição: Esse bioma é relativamente quente, nenhum peixe, planta aquática, afogado é visto aqui, a presença de bloco de magma é mais comum mas em quantidade baixa, os blocos de magma podem ser visto em formações de pequenos vulcões submersos feito de bloco de pedra, a profundidade desse bioma é relativamente alta (25 a 35 blocos de altura entre a superfície e o chão no mar), mas não tanto quanto "Deep Abyss". Com tom avermelhado, é um ambiente de ação termica com a crosta terrestre que é próximo a lava, por isso é mais comum ver no fundo, ravinas subaquáticas longas, e com alguns blocos de magma no fundo, colocando mais profundidade com essas ravinas
+
+- Cores: Água (#B85C45), Grama (#DEA000), Folhagem (#B08000), Neblina (#A32000)
+
+[Shallow Ocean]:
+
+- Blocos: Água, Areia, Erva Marinha, Coral, Gorgônias, Pepino do Mar, Alga
+
+- Definição: Um raso bioma de oceano, poucos blocos de distância a superfície da água (entre 5 a 7 blocos de distância da superfície da água e até o fundo do mar), abrange uma grande diversidade de diversos peixes, mais comum é o golfinho nesse bioma, náutilo também é mais comum, assim como os peixes tropicais, pequenas ilhas podem ser formados nesse bioma, não são grandes mas podem abrigar poucas árvores, e animais terrestres, e terra fértil
+
+- Cores: Água (#82DCE8), Grama (#23C718), Folhagem (#53A14D), Neblina (#41B1BF)
+
+[Dead Ocean]:
+
+- Blocos: Água, Areia, Argila, Bloco de Coral Morto, Coral Morto, Gorgônia Morta
+
+- Definição: Um bioma com diversidade totalmente morta, raso mas um pouco profundo (9 a 15 blocos de altura entre a superfície e o chão no mar), sem nenhum ser vivo presente nesse bioma, afogados aqui nunca é visto, corais e blocos de corais mortos é bastante comum, não existe vida viva nesse bioma, apenas um mar silencioso e calmo, com a falta de beleza natural, apenas com uma tonalidade infeliz
+
+- Cores: Água (#718987), Grama (#6B8F79), Folhagem (#466954), Neblina (#657D7C)
+
+• [Fase 3 de 5]: Novo tipo de Árvore & Definição de Ilhas
+
+- Uma nova árvore será implementado em certos biomas, é uma versão de árvore adaptada a vida marinha, cresce apenas de baixo d'água, a arvore tem folhas mas que são bem parecidas com folhas de algas, o tronco é esverdeado e contém madeira em si, é uma árvore parente do carvalho, ou seja, a cor da tábuas de madeira é a mesma da árvore de carvalho, o terreno para plantar pode ser tanto terra ou areia, apenas se estiver de baixo d'água, os biomas onde essa árvore vai existir são:
+
+- Tropical Ocean 
+- Kelp Forest
+- Shallow Ocean
+
+- A árvore terá duas variantes como a árvore de carvalho tem, o tamanho normal e a small_size, essa versão small_size é mais comum no bioma de Shallow Ocean, dado que o tamanho da profundidade do mar nesse bioma é menor, a quantidade dessas árvores que nasce naturalmente quando o mundo é formado, não é grande, um bioma pode ter no máximo 128 árvores no total, são poucas, e essas árvores não ficam próximos uma da outra, a distância dessas árvores entre elas, é de 12 a 17 Blocos de distância uma da outra, diferente das árvores de carvalho que são aos montes e agrupados
+
+- O formato dessa árvore não é parecido com a de carvalho, a forma dessa árvore marinha mudou para se assimilar as algas (kelps), ou seja, ela terá uma forma dessa maneira:
+
+("🪵" = Tronco, "🌿" = Folhas)
+
+  🌿 
+🌿🪵🌿
+🌿🪵🌿
+🌿🪵🌿
+🌿🪵🌿
+🌿🪵🌿
+
+- Seria algo assim, a árvore marinha teria 5 blocos de tronco de altura, e estaria coberto totalmente por folhas nos 4 lados do tronco, as folhas cobre todo o tronco reto, já a small_size teria apenas 3 troncos de altura
+
+- Agora sobre as ilhas, as ilhas não são grandes, e geralmente são flutuantes, e todas as ilhas tem blocos de terra no centro da ilha e areia nas bordas da ilha como praia, as ilhas não são numerosos na geração do mundo, e podem abrigar árvores de sua perspectiva bioma encima da ilha, as definições de árvores para cada bioma são:
+
+- Tropical Ocean (Árvore de Carvalho & Árvore de Bétula) + (Chance de ilha com Árvore de Cerejeira)
+- Deep Abyss (Árvore de Carvalho Escuro)
+- Frozen Ocean (Árvore de Pinheiro)
+- Kelp Forest (Árvore de Azaleia) + (Chance de ilha com Árvore de Acácia)
+- Volcanic Ocean (Árvore de Álamo)
+- Shallow Ocean (Árvore de Selva) + (Chance de ilha com Árvore de Mangue)
+- Dead Ocean (Árvore de Carvalho Pálido)
+
+- Existe chance de algumas ilhas terem árvores diferentes, não existe um padrão direto, assim mantendo a gameplay vanilla mesmo em biomas de Oceano constante
+
+- Todo bioma tem entradas de cavernas sub-aquáticas (onde leva a estruturas de mina, entre outros, isso tem na maioria dos biomas, não é frequentemente, mas torna a geração do mundo mais próximo de vanilla
+
+• [Fase 4 de 4]: Definições de Estruturas Vanillas
+
+- Tais estruturas que o próprio jogo gera na hora de criar o mundo, terão uma diferença no local de geração, o objetivo é colocar todas as estruturas geradas, no fundo do mar, igual o monumento oceânico. Apenas as vilas, mansão vex e inglu com porão ficarão de fora na geração do fundo do mar, pois as vilas, mansões e inglus são gerados nas ilhas, e algumas vilas são gerados como flutuantes, que flutuam na água, eles usam esponja úmida como boias flutuantes, essas esponjas ficam de baixo da vila toda, para sustentar as casas e o caminho de terra batida, a maioria das vilas tem seu formato de acordo com bioma vanilla e bioma personalizado, para biomas personalizados, as vilas devem ter seu padrão assim:
+
+- Tropical Ocean (Vila de Planície)
+- Deep Abyss (Mansão Vex, Nenhuma vila)
+- Frozen Ocean (Vila de Taiga + Inglu\inglu com porão)
+- Kelp Forest (Vila de Acácia)
+- Volcanic Ocean (Nenhuma vila)
+- Shallow Ocean (Vila de Planície)
+- Dead Ocean (Vila do Deserto)
+
+- Nem todos os biomas tem vilas, agora as estruturas que não gera mobs juntos (como vilas,mansão vex e Inglu\Inglu com porão) são estruturas que ficam de baixo d'água, estruturas de cavernas vão permanecer como estão definidas
+
+• [Fase 5 de 5]: Novo item, Nomes & Utilidades 
+
+- Um novo item será adicionado, esse item é do tipo alimento, chamado "Baga Oceânica" ou pode ser chamado de "Baga Azul", da mesma família das bagas brilhantes, a baga azul vem diretamente da árvore marinha dito anteriormente, que agora também tem nome definido, se chama "Árvore Ocepânia", que é parente próximo da árvore de carvalho (o tronco da ocepânia produz 4 madeira de carvalho na bancada, tronco de ocepânia descascado tem a mesma utilidade do tronco de carvalho descascado), as bagas azul podem cair das folhas marinhas que a árvore tem, diferente das maçãs que caem das folhas das árvores terrestres (com 0,5% de chance de cair), as bagas azul tem uma grande chance de cair quando suas folhas aquáticas são destruído, com 42% de chance de cair 1 ou 3 bagas azul, as folhas não tem alteração de textura como as trepadeiras de teto das bagas brilhantes, a árvore ocepânia igual a árvores terrestres, se o tronco for totalmente removido (sem que as folhas tenham ligação com o tronco ao lado), com o tempo, a própria folha marinha se destrói, igual a folhas das árvores terrestres, a diferença é que, a chance de obter mudas da árvore é menor, com 2,1% de chance de cair uma muda ao destruir uma folha (bloco de folha), em comparação com a folha da selva, que tem 2,6% de chance de cair uma muda da selva.
+
+- A baga azul pode fornecer 2 ponto de fome, igual a baga brilhante, a diferença é o aumento de saturação é de 2.4, o alimento é firme e fornece mais recuperação de vida (recupera 4 pontos de vida), além do bônus de efeito de status Respiração Aquática, que tem duração de 3 minuto quando o jogador consome a baga, a utilidade da baga azul é poder fornecer corante azul na bancada de trabalho (fornece 2 corante por 1 baga azul), e pode ser usado como alimento para náutilo e golfinho (cura a vida deles em 3 pontos por baga consumido), assim podendo reproduzir os dois tipos de mobs aquaticos, a baga azul nas folhas da ocepânia, não emitem luz como as bagas brilhantes, mas as bagas azul podem ser usado como substituto da tinta brilhante, deixando os textos das placas com cor brilhante.
+
+• [Fase Final]: Observação
+
+- O objetivo desse addon é tornar o mundo todo do jogo em um ambiente puramente aquático, bem similar ao jogo "Subnautica", adaptando para vida marinha, estruturas, biomas personalizados, ilhas personalizados, então faça pesquisa e também terá um addon de referência para ajudar nesse projeto, esse arquivo ".zip" tem a textura do item e dos blocos da árvore (folhas "opaque" para mudança de cor hex), o addon de referência "Better-Biomes.mcaddon" pode conter alguma referência para auxiliar.
+
+Em todo teste feito, crie um relatório, relatando todo o progresso e colocando no relatório, todo o histórico dessa conversa para caso seja repassado para outra conta, para assim o outro modelo possa entender e continuar de onde parou.
+
+(Aviso: Todo o teste real no jogo, será feito pelo usuário)
